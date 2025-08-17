@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Dashboard() {
   const [teachers, setTeachers] = useState([]);
@@ -10,21 +10,24 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://school-crm-backend-ioyv.onrender.com/api/teachers")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Ошибка сети");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setTeachers(data.data);
+    const fetchTeachers = async () => {
+      try {
+        const response = await axios.get(
+          "https://school-crm-backend-ioyv.onrender.com/api/teachers"
+        );
+        setTeachers(response.data.data);
+      } catch (err) {
+        setError(
+          err.response?.data?.message ||
+            err.message ||
+            "Ошибка при загрузке данных"
+        );
+      } finally {
         setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchTeachers();
   }, []);
 
   const handleExit = () => {
