@@ -20,7 +20,11 @@ export default function Login() {
       );
 
       if (response.data.success) {
-        navigate("/dashboard");
+        if (response.data.isAdmin) {
+          navigate("/register");
+        } else {
+          navigate("/dashboard");
+        }
       }
     } catch {}
   };
@@ -41,7 +45,7 @@ export default function Login() {
         <input
           placeholder="Логин"
           name="email"
-          value={formData.username}
+          value={formData.name}
           onChange={handleInputChange}
         />
         <br />
