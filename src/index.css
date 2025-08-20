@@ -3,9 +3,14 @@ body {
   margin: 0;
 }
 
+time {
+  color: rgb(216, 75, 98);
+}
+
 button {
   cursor: pointer;
   border: none;
+  color: rgb(29, 151, 167);
   border-radius: 4px;
 }
 
