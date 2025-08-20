@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import axios from "TimeButtons";
 
 export default function Dashboard() {
   const [teachers, setTeachers] = useState([]);
@@ -36,15 +37,6 @@ export default function Dashboard() {
 
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка: {error}</div>;
-
-  function TimeSlot({time}) {
-
-    function handleClick() {
-      console.log('clicked!');
-    }
-
-    return <button className="square" onClick={handleClick}>{time}</button>;
-  }
 
   return (
     <div style={{ padding: "20px" }}>
