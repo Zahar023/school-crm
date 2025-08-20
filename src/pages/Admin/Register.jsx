@@ -69,6 +69,10 @@ export default function Register() {
     navigate("/");
   };
 
+  const handleActiveUsers = () => {
+    navigate("/users");
+  };
+
   return (
     <div>
       <h1>добавление пользователя в CRM</h1>
@@ -103,6 +107,7 @@ export default function Register() {
           Зарегистрировать
         </button>
         <button onClick={handleExit}>Назад</button>
+        <button onClick={handleActiveUsers}>Пользователи</button>
       </form>
     </div>
   );
