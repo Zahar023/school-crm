@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ways } from "./data";
+import TimeButton from "./TimeButton";
 
 export default function Dashboard() {
   const [teachers, setTeachers] = useState([]);
@@ -38,36 +39,28 @@ export default function Dashboard() {
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка: {error}</div>;
 
-  function TimeButton(props) {
-    return (
-      <ul>
-        <TimeSlot time={props.title} /> <button> {props.description}</button>
-      </ul>
-    );
-  }
-
-  function TimeSlot({ time }) {
-    function handleClick() {
-      console.log("clicked!"); //Я брал инфу с документации где по очередно делали крестики-нолики, поэтому эта функция здесь нахер не нужна
-    }
-
-    return (
-      <button className="square" onClick={handleClick}>
-        {time}
-      </button>
-    );
-  }
-
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Личный кабинет</h1>
-      <p>Здесь будет расписание</p>
-      <ul>
-        {teachers.map((teacher) => (
+      <div className="side-bar">
+        <div className="header">
+          <div className="logo"></div>
+          <div className="toggleButton"></div>
+        </div>
+        <div className="side-bar-body">
+          <div className="Личный кабинет">
+            <h2>Личный кабинет</h2>
+          </div>
+          <div>
+            <button onClick={handleExit}> Выход </button>
+          </div>
+        </div>
+        <ul>
+          {/* {teachers.map((teacher) => (
           <li key={teacher.id}>{teacher.name} </li>
-        ))}
-      </ul>
-      <div className="time-buttons">
+        ))} */}
+        </ul>
+      </div>
+      <div className="time-description-buttons">
         <TimeButton {...ways[0]} />
         <TimeButton {...ways[1]} />
         <TimeButton {...ways[2]} />
@@ -82,7 +75,6 @@ export default function Dashboard() {
         <TimeButton {...ways[11]} />
         <TimeButton {...ways[12]} />
       </div>
-      <button onClick={handleExit}> Выход </button>
     </div>
   );
 }
