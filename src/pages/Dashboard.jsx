@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ways } from "./data";
 
 export default function Dashboard() {
   const [teachers, setTeachers] = useState([]);
@@ -37,13 +38,24 @@ export default function Dashboard() {
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка: {error}</div>;
 
-  function TimeSlot({time}) {
+  function TimeButton({ title, description }) {
+    return (
+      <ul>
+        <TimeSlot time={title} /> <button> {description}</button>
+      </ul>
+    );
+  }
 
+  function TimeSlot({ time }) {
     function handleClick() {
-      console.log('clicked!');  //Я брал инфу с документации где по очередно делали крестики-нолики, поэтому эта функция здесь нахер не нужна
+      console.log("clicked!"); //Я брал инфу с документации где по очередно делали крестики-нолики, поэтому эта функция здесь нахер не нужна
     }
 
-    return <button className="square" onClick={handleClick}>{time}</button>;
+    return (
+      <button className="square" onClick={handleClick}>
+        {time}
+      </button>
+    );
   }
 
   return (
@@ -56,49 +68,21 @@ export default function Dashboard() {
         ))}
       </ul>
       <div className="time-buttons">
-        <ul>
-          <li>
-            <TimeSlot time="09:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="10:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="11:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="12:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="13:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="14:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="15:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="16:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="17:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="18:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="19:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="20:00" /> <button>Записать</button>
-          </li>
-          <li>
-            <TimeSlot time="21:00" /> <button>Записать</button>
-          </li>
-        </ul>
+        <TimeButton title="9:00" description="Записать" />
+        <TimeButton title="10:00" description="Записать" />
+        <TimeButton title="11:00" description="Записать" />
+        <TimeButton title="12:00" description="Записать" />
+        <TimeButton title="13:00" description="Записать" />
+        <TimeButton title="14:00" description="Записать" />
+        <TimeButton title="15:00" description="Записать" />
+        <TimeButton title="16:00" description="Записать" />
+        <TimeButton title="17:00" description="Записать" />
+        <TimeButton title="18:00" description="Записать" />
+        <TimeButton title="19:00" description="Записать" />
+        <TimeButton title="20:00" description="Записать" />
+        <TimeButton title="21:00" description="Записать" />
       </div>
-      <button onClick={handleExit}> Выход </button>      
+      <button onClick={handleExit}> Выход </button>
     </div>
   );
 }
