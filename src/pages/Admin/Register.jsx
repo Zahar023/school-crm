@@ -34,7 +34,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://school-crm-backend-ioyv.onrender.com/api/register",
+        "https://school-crm-backend-ioyv.onrender.com/api/auth/register",
         formData,
         {
           headers: {
