@@ -1,23 +1,55 @@
 export const ways = [
+  //data.js для TimeButton
   {
-    title: "Веб-разработка",
-    description: "Создание и поддержка веб-сайтов и приложений.",
-  },
-
-  {
-    title: "Мобильная разработка",
-    description: "Разработка приложений для мобильных устройств.",
+    title: "9:00",
+    description: "Записать",
   },
   {
-    title: "Десктопная разработка",
-    description: "Создание программного обеспечения для настольных ПК.",
+    title: "10:00",
+    description: "Записать",
   },
   {
-    title: "Игровая разработка",
-    description: "Проектирование и создание компьютерных игр.",
+    title: "11:00",
+    description: "Записать",
   },
   {
-    title: "Разработка баз данных",
-    description: "Проектирование и управление базами данных.",
+    title: "12:00",
+    description: "Записать",
+  },
+  {
+    title: "13:00",
+    description: "Записать",
+  },
+  {
+    title: "14:00",
+    description: "Записать",
+  },
+  {
+    title: "15:00",
+    description: "Записать",
+  },
+  {
+    title: "16:00",
+    description: "Записать",
+  },
+  {
+    title: "17:00",
+    description: "Записать",
+  },
+  {
+    title: "18:00",
+    description: "Записать",
+  },
+  {
+    title: "19:00",
+    description: "Записать",
+  },
+  {
+    title: "20:00",
+    description: "Записать",
+  },
+  {
+    title: "21:00",
+    description: "Записать",
   },
 ];

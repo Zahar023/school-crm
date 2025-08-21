@@ -38,10 +38,10 @@ export default function Dashboard() {
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка: {error}</div>;
 
-  function TimeButton({ title, description }) {
+  function TimeButton(props) {
     return (
       <ul>
-        <TimeSlot time={title} /> <button> {description}</button>
+        <TimeSlot time={props.title} /> <button> {props.description}</button>
       </ul>
     );
   }
@@ -68,19 +68,19 @@ export default function Dashboard() {
         ))}
       </ul>
       <div className="time-buttons">
-        <TimeButton title="9:00" description="Записать" />
-        <TimeButton title="10:00" description="Записать" />
-        <TimeButton title="11:00" description="Записать" />
-        <TimeButton title="12:00" description="Записать" />
-        <TimeButton title="13:00" description="Записать" />
-        <TimeButton title="14:00" description="Записать" />
-        <TimeButton title="15:00" description="Записать" />
-        <TimeButton title="16:00" description="Записать" />
-        <TimeButton title="17:00" description="Записать" />
-        <TimeButton title="18:00" description="Записать" />
-        <TimeButton title="19:00" description="Записать" />
-        <TimeButton title="20:00" description="Записать" />
-        <TimeButton title="21:00" description="Записать" />
+        <TimeButton {...ways[0]} />
+        <TimeButton {...ways[1]} />
+        <TimeButton {...ways[2]} />
+        <TimeButton {...ways[3]} />
+        <TimeButton {...ways[4]} />
+        <TimeButton {...ways[5]} />
+        <TimeButton {...ways[6]} />
+        <TimeButton {...ways[7]} />
+        <TimeButton {...ways[8]} />
+        <TimeButton {...ways[9]} />
+        <TimeButton {...ways[10]} />
+        <TimeButton {...ways[11]} />
+        <TimeButton {...ways[12]} />
       </div>
       <button onClick={handleExit}> Выход </button>
     </div>
