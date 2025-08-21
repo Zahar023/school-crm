@@ -1,6 +1,7 @@
 export default function RegisterSlot({ description }) {
   function handleClick() {
-    console.log("clicked!"); //Я брал инфу с документации где по очередно делали крестики-нолики, поэтому эта функция здесь нахер не нужна
+    console.log("clicked!"); // Проверка клика
+    // Здесь можно добавить логику для регистрации на слот
   }
 
   return (

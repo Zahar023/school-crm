@@ -40,7 +40,7 @@ export default function Dashboard() {
   if (error) return <div>Ошибка: {error}</div>;
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "30px" }}>
       <div className="side-bar">
         <div className="header">
           <div className="logo"></div>
@@ -61,19 +61,11 @@ export default function Dashboard() {
         </ul>
       </div>
       <div className="time-description-buttons">
-        <TimeButton {...ways[0]} />
-        <TimeButton {...ways[1]} />
-        <TimeButton {...ways[2]} />
-        <TimeButton {...ways[3]} />
-        <TimeButton {...ways[4]} />
-        <TimeButton {...ways[5]} />
-        <TimeButton {...ways[6]} />
-        <TimeButton {...ways[7]} />
-        <TimeButton {...ways[8]} />
-        <TimeButton {...ways[9]} />
-        <TimeButton {...ways[10]} />
-        <TimeButton {...ways[11]} />
-        <TimeButton {...ways[12]} />
+        <h3>Запись</h3>
+
+        {ways.map((way) => (
+          <TimeButton {...way} />
+        ))}
       </div>
     </div>
   );

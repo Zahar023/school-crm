@@ -3,17 +3,6 @@ body {
   margin: 0;
 }
 
-time {
-  color: rgb(216, 75, 98);
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  color: rgb(90, 88, 200);
-  border-radius: 4px;
-}
-
 .login-button {
   padding: 10px 20px;
   background: #4caf50;
