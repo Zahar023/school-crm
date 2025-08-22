@@ -3,19 +3,19 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Dashboard() {
-  const [teachers, setTeachers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchTeachers = async () => {
+    const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://school-crm-backend-ioyv.onrender.com/api/teachers"
+          "https://school-crm-backend-ioyv.onrender.com/api/users"
         );
-        setTeachers(response.data.data);
+        setUsers(response.data.data);
       } catch (err) {
         setError(
           err.response?.data?.message ||
@@ -27,7 +27,7 @@ export default function Dashboard() {
       }
     };
 
-    fetchTeachers();
+    fetchUsers();
   }, []);
 
   const handleExit = () => {
@@ -47,7 +47,7 @@ export default function Dashboard() {
       <h1>Личный кабинет</h1>
       <p>Здесь будет расписание</p>
       <ul>
-        {teachers.map((teacher) => (
+        {users.map((teacher) => (
           <li key={teacher.id}>{teacher.name} </li>
         ))}
       </ul>
