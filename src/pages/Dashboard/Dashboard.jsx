@@ -33,6 +33,11 @@ export default function Dashboard() {
   }, []);
 
   const handleExit = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userData");
+
+    delete axios.defaults.headers.common["Authorization"];
+
     navigate("/");
   };
 

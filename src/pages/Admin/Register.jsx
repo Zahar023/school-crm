@@ -34,7 +34,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://school-crm-backend-ioyv.onrender.com/api/register",
+        "https://school-crm-backend-ioyv.onrender.com/api/auth/register",
         formData,
         {
           headers: {
@@ -67,6 +67,10 @@ export default function Register() {
 
   const handleExit = () => {
     navigate("/");
+  };
+
+  const handleActiveUsers = () => {
+    navigate("/users");
   };
 
   return (
@@ -103,6 +107,7 @@ export default function Register() {
           Зарегистрировать
         </button>
         <button onClick={handleExit}>Назад</button>
+        <button onClick={handleActiveUsers}>Пользователи</button>
       </form>
     </div>
   );
