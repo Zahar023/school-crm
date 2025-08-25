@@ -84,22 +84,45 @@ export default function Dashboard() {
       <h1>Все пользователи</h1>
       <p>Здесь можно запретить доступ пользователю на платформу</p>
       <div>
-        {users.map((teacher) => (
-          <div key={teacher.id}>
-            <span>{teacher.name}</span>
-            <span
-              style={{
-                color: teacher.active ? "green" : "red",
-                fontWeight: "bold",
-              }}
-            >
-              {teacher.active ? "Активен" : "Неактивен"}
-            </span>
-            <button onClick={() => toggleActiveStatus(teacher.id)}>
-              {teacher.active ? "Заблокировать" : "Разблокировать"}
-            </button>
-          </div>
-        ))}
+        <table
+          style={{
+            width: "80%",
+            borderCollapse: "collapse",
+            //borderSpacing: "0px", работает только с separate
+            backgroundColor: "#f5f5f5",
+            //border: "1px solid #ddd",
+            borderRadius: "8px",
+            margin: "10px auto",
+            fontFamily: "Arial",
+            overflow: "auto",
+          }}
+        >
+          <thead
+            style={{
+              backgroundColor: "#b1b2b3ff",
+              fontWeight: "600",
+            }}
+          >
+            <tr>
+              <th>Пользователь</th>
+              <th>Статус</th>
+              <th>Действия</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((teacher) => (
+              <tr>
+                <th>{teacher.name}</th>
+                <th>{teacher.active ? "Активен" : "Неактивен"}</th>
+                <th>
+                  <button onClick={() => toggleActiveStatus(teacher.id)}>
+                    {teacher.active ? "Заблокировать" : "Разблокировать"}
+                  </button>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <button onClick={handleExit}> Выход </button>
     </div>
