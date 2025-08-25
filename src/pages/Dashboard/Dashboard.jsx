@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ways } from "./data";
 import TimeButton from "./TimeButton";
+import "./DashboardEffects.css";
 
 export default function Dashboard() {
   const [teachers, setTeachers] = useState([]);
@@ -45,15 +46,16 @@ export default function Dashboard() {
   if (error) return <div>Ошибка: {error}</div>;
 
   return (
-    <div style={{ padding: "30px" }}>
-      <div className="side-bar">
-        <div className="header">
-          <div className="logo"></div>
+    // <body style>
+    <div className="dashboard">
+      <div className="sidebar">
+        <div className="sidebarHeader">
+          <div className="sidebarHeaderLogo"></div>
           <div className="toggleButton"></div>
         </div>
-        <div className="side-bar-body">
-          <div className="Личный кабинет">
-            <h2>Личный кабинет</h2>
+        <div className="sidebarBody">
+          <div className="personalCabinet">
+            <h2>Профиль</h2>
           </div>
           <div>
             <button onClick={handleExit}> Выход </button>
@@ -65,7 +67,7 @@ export default function Dashboard() {
         ))} */}
         </ul>
       </div>
-      <div className="time-description-buttons">
+      <div className="timeDescriptionButtons">
         <h3>Запись</h3>
 
         {ways.map((way) => (
@@ -73,5 +75,6 @@ export default function Dashboard() {
         ))}
       </div>
     </div>
+    // </body>
   );
 }

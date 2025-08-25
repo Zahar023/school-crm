@@ -23,8 +23,9 @@ export default function Login() {
       if (response.data.success) {
         localStorage.setItem("authToken", response.data.data.token);
 
-        axios.defaults.headers.common["Authorization"] =
-          `Bearer ${response.data.data.token}`;
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.data.token}`;
 
         localStorage.setItem(
           "userData",
@@ -65,38 +66,54 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Вход в CRM</h1>
-      {error && (
-        <div
-          style={{
-            color: "#c62828",
-            borderRadius: "4px",
-            marginBottom: "15px",
-          }}
-        >
-          {error}
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-header">
+          <label>Вход в CRM</label>
         </div>
-      )}
-      <form onSubmit={handleLogin}>
-        <input
-          placeholder="Логин"
-          name="email"
-          value={formData.name}
-          onChange={handleInputChange}
-        />
-        <br />
-        <input
-          placeholder="Пароль"
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-        <br />
-        <button className="login-button" type="submit">
-          Войти
-        </button>
-      </form>
+        {error && (
+          <div
+            style={{
+              color: "#c62828",
+              borderRadius: "4px",
+              marginBottom: "15px",
+            }}
+          >
+            {error}
+          </div>
+        )}
+        <div>
+          <form onSubmit={handleLogin}>
+            <input
+              placeholder="Логин"
+              name="email"
+              value={formData.name}
+              onChange={handleInputChange}
+            />
+          </form>
+          <div>
+            <p />
+          </div>
+        </div>
+        <div>
+          <form onSubmit={handleLogin}>
+            <input
+              placeholder="Пароль"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+          </form>
+          <div>
+            <p />
+          </div>
+        </div>
+        <div>
+          <button className="login-button" type="submit">
+            Войти
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
