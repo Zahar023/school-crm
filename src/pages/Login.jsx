@@ -65,38 +65,57 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Вход в CRM</h1>
-      {error && (
-        <div
-          style={{
-            color: "#c62828",
-            borderRadius: "4px",
-            marginBottom: "15px",
-          }}
-        >
-          {error}
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-header">
+          <label>Вход в CRM</label>
         </div>
-      )}
-      <form onSubmit={handleLogin}>
-        <input
-          placeholder="Логин"
-          name="email"
-          value={formData.name}
-          onChange={handleInputChange}
-        />
-        <br />
-        <input
-          placeholder="Пароль"
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-        <br />
-        <button className="login-button" type="submit">
-          Войти
-        </button>
-      </form>
+        {error && (
+          <div
+            style={{
+              color: "#c62828",
+              borderRadius: "4px",
+              marginBottom: "15px",
+            }}
+          >
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleLogin}>
+          <div>
+            <input
+              placeholder="Логин"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div>
+            <p />
+          </div>
+          <div>
+            <input
+              placeholder="Пароль"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div>
+            <p />
+          </div>
+          <div>
+            <button className="login-button" type="submit">
+              Войти
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
