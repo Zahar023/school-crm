@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ways } from "./data";
+import TimeButton from "./TimeButton";
+import "./DashboardEffects.css";
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
@@ -43,15 +46,35 @@ export default function Dashboard() {
   if (error) return <div>Ошибка: {error}</div>;
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Личный кабинет</h1>
-      <p>Здесь будет расписание</p>
-      <ul>
-        {users.map((teacher) => (
+    // <body style>
+    <div className="dashboard">
+      <div className="sidebar">
+        <div className="sidebarHeader">
+          <div className="sidebarHeaderLogo"></div>
+          <div className="toggleButton"></div>
+        </div>
+        <div className="sidebarBody">
+          <div className="personalCabinet">
+            <h2>Профиль</h2>
+          </div>
+          <div>
+            <button onClick={handleExit}> Выход </button>
+          </div>
+        </div>
+        <ul>
+          {/* {teachers.map((teacher) => (
           <li key={teacher.id}>{teacher.name} </li>
+        ))} */}
+        </ul>
+      </div>
+      <div className="timeDescriptionButtons">
+        <h3>Запись</h3>
+
+        {ways.map((way) => (
+          <TimeButton {...way} />
         ))}
-      </ul>
-      <button onClick={handleExit}> Выход </button>
+      </div>
     </div>
+    // </body>
   );
 }
