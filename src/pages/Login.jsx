@@ -23,9 +23,8 @@ export default function Login() {
       if (response.data.success) {
         localStorage.setItem("authToken", response.data.data.token);
 
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.data.data.token}`;
+        axios.defaults.headers.common["Authorization"] =
+          `Bearer ${response.data.data.token}`;
 
         localStorage.setItem(
           "userData",
@@ -82,37 +81,40 @@ export default function Login() {
             {error}
           </div>
         )}
-        <div>
-          <form onSubmit={handleLogin}>
+
+        <form onSubmit={handleLogin}>
+          <div>
             <input
               placeholder="Логин"
               name="email"
-              value={formData.name}
+              type="email"
+              value={formData.email}
               onChange={handleInputChange}
+              required
             />
-          </form>
+          </div>
           <div>
             <p />
           </div>
-        </div>
-        <div>
-          <form onSubmit={handleLogin}>
+          <div>
             <input
               placeholder="Пароль"
               name="password"
+              type="password"
               value={formData.password}
               onChange={handleInputChange}
+              required
             />
-          </form>
+          </div>
           <div>
             <p />
           </div>
-        </div>
-        <div>
-          <button className="login-button" type="submit">
-            Войти
-          </button>
-        </div>
+          <div>
+            <button className="login-button" type="submit">
+              Войти
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
