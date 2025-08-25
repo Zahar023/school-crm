@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Dashboard() {
-  const [teachers, setTeachers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -11,18 +11,18 @@ export default function Dashboard() {
 
   const toggleActiveStatus = async (teacherId) => {
     try {
-      const teacher = teachers.find((t) => t.id === teacherId);
+      const teacher = users.find((t) => t.id === teacherId);
       console.log("Введенные данные:", teacher);
       const newActiveStatus = !teacher.active;
 
-      setTeachers(
-        teachers.map((t) =>
+      setUsers(
+        users.map((t) =>
           t.id === teacherId ? { ...t, active: newActiveStatus } : t
         )
       );
 
       const response = await axios.patch(
-        "https://school-crm-backend-ioyv.onrender.com/api/teachers/status",
+        "https://school-crm-backend-ioyv.onrender.com/api/users/status",
         {
           email: teacher.email,
           active: newActiveStatus,
@@ -30,15 +30,15 @@ export default function Dashboard() {
       );
 
       if (!response.data.success) {
-        setTeachers(
-          teachers.map((t) =>
+        setUsers(
+          users.map((t) =>
             t.id === teacherId ? { ...t, active: teacher.active } : t
           )
         );
       }
     } catch (err) {
-      setTeachers(
-        teachers.map((t) =>
+      setUsers(
+        users.map((t) =>
           t.id === teacherId ? { ...t, active: teacher.active } : t
         )
       );
@@ -52,12 +52,12 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    const fetchTeachers = async () => {
+    const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://school-crm-backend-ioyv.onrender.com/api/teachers"
+          "https://school-crm-backend-ioyv.onrender.com/api/users"
         );
-        setTeachers(response.data.data);
+        setUsers(response.data.data);
       } catch (err) {
         setError(
           err.response?.data?.message ||
@@ -69,7 +69,7 @@ export default function Dashboard() {
       }
     };
 
-    fetchTeachers();
+    fetchUsers();
   }, []);
 
   const handleExit = () => {
@@ -84,7 +84,7 @@ export default function Dashboard() {
       <h1>Все пользователи</h1>
       <p>Здесь можно запретить доступ пользователю на платформу</p>
       <div>
-        {teachers.map((teacher) => (
+        {users.map((teacher) => (
           <div key={teacher.id}>
             <span>{teacher.name}</span>
             <span
