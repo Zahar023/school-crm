@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useUser } from "../contexts/UserContext";
 
 export default function Login() {
+  const { login } = useUser();
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -21,15 +23,9 @@ export default function Login() {
       );
 
       if (response.data.success) {
-        localStorage.setItem("authToken", response.data.data.token);
+        const { token, user } = response.data.data;
 
-        axios.defaults.headers.common["Authorization"] =
-          `Bearer ${response.data.data.token}`;
-
-        localStorage.setItem(
-          "userData",
-          JSON.stringify(response.data.data.token)
-        );
+        login(token, user);
 
         if (response.data.data.isAdmin) {
           navigate("/register");

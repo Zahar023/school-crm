@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../contexts/UserContext";
 import axios from "axios";
 import { ways } from "./data";
 import TimeButton from "./TimeButton";
 import "./DashboardEffects.css";
 
 export default function Dashboard() {
+  const { logout } = useUser();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,6 +15,12 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
@@ -34,11 +42,7 @@ export default function Dashboard() {
   }, []);
 
   const handleExit = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userData");
-
-    delete axios.defaults.headers.common["Authorization"];
-
+    logout();
     navigate("/");
   };
 
@@ -71,7 +75,7 @@ export default function Dashboard() {
         <h3>Запись</h3>
 
         {ways.map((way) => (
-          <TimeButton {...way} />
+          <TimeButton key={way.id} {...way} />
         ))}
       </div>
     </div>
