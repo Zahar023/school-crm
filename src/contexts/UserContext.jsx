@@ -7,6 +7,10 @@ export function UserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
+    console.log("currentUser обновлен:", currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
     const initializeAuth = async () => {
       try {
         const token = localStorage.getItem("authToken");
@@ -21,12 +25,15 @@ export function UserProvider({ children }) {
         }
 
         const payload = JSON.parse(atob(token.split(".")[1]));
-
+        console.log(
+          "Реальная структура JWT payload:",
+          JSON.stringify(payload, null, 2)
+        );
         setCurrentUser({
-          id: payload.id,
-          email: payload.email,
-          name: payload.full_name,
-          role: payload.role,
+          id: payload.userId,
+          //email: payload.user?.email,
+          //name: payload.user?.full_name,
+          role: payload.user?.role,
           isAdmin: payload.isAdmin || false,
         });
       } catch (error) {
@@ -48,12 +55,13 @@ export function UserProvider({ children }) {
       const payload = JSON.parse(atob(token.split(".")[1]));
 
       setCurrentUser({
-        id: payload.id,
-        email: payload.email,
-        name: payload.full_name,
-        role: payload.role,
+        id: payload.userId,
+        //email: payload.user?.email,
+        //name: payload.user?.full_name,
+        role: payload.user?.role,
         isAdmin: payload.isAdmin || false,
       });
+
       //localStorage.setItem("userData", JSON.stringify(userData));
     } catch (error) {
       console.error("Ошибка при логине:", error);
