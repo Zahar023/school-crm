@@ -4,7 +4,6 @@ import axios from "axios";
 import { ways } from "./data";
 import TimeButton from "./TimeButton";
 import "./DashboardEffects.css";
-import Sidebar from "../../components/Sidebar";
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
@@ -47,7 +46,6 @@ export default function Dashboard() {
   return (
     // <body style>
     <div className="dashboard">
-      <Sidebar />
       <div className="timeDescriptionButtons">
         <h3> Запись</h3>
 

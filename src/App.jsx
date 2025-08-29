@@ -3,6 +3,8 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Register from "./pages/Admin/Register";
 import Users from "./pages/Admin/ActiveUsers";
+import Layout from "./components/Layout";
+import Profile from "./pages/Profile/Profile";
 
 export default function App() {
   return (
@@ -10,7 +12,22 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Layout>
+                <Dashboard />
+              </Layout>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Layout>
+                <Profile />
+              </Layout>
+            }
+          />
           <Route path="/register" element={<Register />} />
           <Route path="/users" element={<Users />} />
         </Routes>

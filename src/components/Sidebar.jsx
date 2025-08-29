@@ -24,16 +24,16 @@ export default function Sidebar() {
         </div>
         <div className="sidebar-nav">
           <button
-            onClick={() => navigate("/dashboard")}
-            className={location.pathname === "/dashboard" ? "active" : ""}
-          >
-            Календарь
-          </button>
-          <button
             onClick={() => navigate("/profile")}
             className={location.pathname === "/profile" ? "active" : ""}
           >
             Профиль
+          </button>
+          <button
+            onClick={() => navigate("/dashboard")}
+            className={location.pathname === "/dashboard" ? "active" : ""}
+          >
+            Календарь
           </button>
         </div>
         <div>
