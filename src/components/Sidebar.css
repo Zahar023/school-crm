@@ -1,0 +1,39 @@
+.sidebar {
+  width: 130px;
+  background: #e5e4e4;
+  transition: width 0.3s;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden auto;
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 13px;
+}
+
+.sidebarBody {
+  flex: 1;
+}
+
+.sidebar-nav {
+  padding: 20px 13px;
+}
+
+.sidebar-nav button {
+  margin: 5px 0px;
+  padding: 2px;
+}
+
+.sidebar-nav button:hover {
+  background-color: beige;
+}
+
+.sidebar-nav button:active {
+  background-color: aqua;
+}

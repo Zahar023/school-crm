@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../../contexts/UserContext";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { ways } from "./data";
 import TimeButton from "./TimeButton";
 import "./DashboardEffects.css";
+import Sidebar from "../../components/Sidebar";
 
 export default function Dashboard() {
-  const { logout } = useUser();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -41,38 +41,15 @@ export default function Dashboard() {
     fetchUsers();
   }, []);
 
-  const handleExit = () => {
-    logout();
-    navigate("/");
-  };
-
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка: {error}</div>;
 
   return (
     // <body style>
     <div className="dashboard">
-      <div className="sidebar">
-        <div className="sidebarHeader">
-          <div className="sidebarHeaderLogo"></div>
-          <div className="toggleButton"></div>
-        </div>
-        <div className="sidebarBody">
-          <div className="personalCabinet">
-            <h2>Профиль</h2>
-          </div>
-          <div>
-            <button onClick={handleExit}> Выход </button>
-          </div>
-        </div>
-        <ul>
-          {/* {teachers.map((teacher) => (
-          <li key={teacher.id}>{teacher.name} </li>
-        ))} */}
-        </ul>
-      </div>
+      <Sidebar />
       <div className="timeDescriptionButtons">
-        <h3>Запись</h3>
+        <h3> Запись</h3>
 
         {ways.map((way) => (
           <TimeButton key={way.id} {...way} />
