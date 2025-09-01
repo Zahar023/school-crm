@@ -1,10 +1,6 @@
 export const ways = [
   //data.js для TimeButton
-  {
-    id: 1,
-    title: "9:00",
-    description: "Записать",
-  },
+  { id: 1, title: "9:00", description: "Записать" },
   { id: 2, title: "10:00", description: "Записать" },
   { id: 3, title: "11:00", description: "Записать" },
   { id: 4, title: "12:00", description: "Записать" },

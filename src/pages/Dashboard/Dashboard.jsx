@@ -1,59 +1,70 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
 import { ways } from "./data";
 import TimeButton from "./TimeButton";
+import BookingModal from "./BookingModal";
 import "./DashboardEffects.css";
+import { useState } from 'react';
 
 export default function Dashboard() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // состояние модального окна
+  const [selectedTime, setSelectedTime] = useState(''); // выбранное время для модального окна
+  const [bookings, setBookings] = useState({}); // все записи
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  const handleBookSlot = (time) => {
+    console.log('Открываю модальное окно для времени:', time);
+    setSelectedTime(time); // устанавливаем выбранное время
+    setIsModalOpen(true); // открываем модальное окно
+  };
 
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/");
-      return;
+  const handleBookSlotCancel = (time) => {
+    if (window.confirm('Вы уверены, что хотите отменить запись?')) {
+      console.log('Запись на', time, 'отменена');
+      setBookings(prev => {
+        const newBookings = { ...prev };
+        delete newBookings[time];
+        return newBookings;
+      });
     }
+    onClose();
+  }
 
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get(
-          "https://school-crm-backend-ioyv.onrender.com/api/users"
-        );
-        setUsers(response.data.data);
-      } catch (err) {
-        setError(
-          err.response?.data?.message ||
-            err.message ||
-            "Ошибка при загрузке данных"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUsers();
-  }, []);
-
-  if (loading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
+  const handleBookingSubmit = (bookingData) => {
+    setBookings(prev => ({
+      ...prev,
+      [bookingData.time]: bookingData
+    }));
+    console.log('Новая запись:', bookingData);
+  };
 
   return (
-    // <body style>
     <div className="dashboard">
       <div className="timeDescriptionButtons">
-        <h3> Запись</h3>
-
-        {ways.map((way) => (
-          <TimeButton key={way.id} {...way} />
-        ))}
+        <h3>Система записи на занятия</h3>
+        
+        <div>
+          {ways.map((way) => {
+            const booking = bookings[way.title];
+            return (
+              <TimeButton 
+                key={way.id} 
+                title={way.title}
+                description={way.description}
+                onBook={handleBookSlot} // дает возможность забронировать слот
+                onClose={handleBookSlotCancel} // дает возможность отменить слот
+                isBooked={!!booking} // показывает, забронирован ли слот
+                bookingInfo={booking} 
+              />
+            );
+          })}
+        </div>
       </div>
+
+      {/* Модальное окно */}
+      <BookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        selectedTime={selectedTime}
+        onSubmit={handleBookingSubmit}
+      />
     </div>
-    // </body>
   );
 }
