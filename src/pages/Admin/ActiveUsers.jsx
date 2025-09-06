@@ -22,7 +22,7 @@ export default function Dashboard() {
       );
 
       const response = await axios.patch(
-        "https://school-crm-backend-ioyv.onrender.com/api/users/status",
+        "https://backend-school-crm-ioyv.onrender.com/api/users/status",
         {
           email: teacher.email,
           active: newActiveStatus,
@@ -55,7 +55,7 @@ export default function Dashboard() {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://school-crm-backend-ioyv.onrender.com/api/users"
+          "https://backend-school-crm-ioyv.onrender.com/api/users"
         );
         setUsers(response.data.data);
       } catch (err) {

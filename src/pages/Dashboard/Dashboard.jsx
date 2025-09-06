@@ -14,30 +14,11 @@ export default function Dashboard() {
   const location = useLocation();
 
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
+    /*const token = localStorage.getItem("authToken");
     if (!token) {
       navigate("/");
       return;
-    }
-
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get(
-          "https://school-crm-backend-ioyv.onrender.com/api/users"
-        );
-        setUsers(response.data.data);
-      } catch (err) {
-        setError(
-          err.response?.data?.message ||
-            err.message ||
-            "Ошибка при загрузке данных"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUsers();
+    }*/
   }, []);
 
   if (loading) return <div>Загрузка...</div>;
