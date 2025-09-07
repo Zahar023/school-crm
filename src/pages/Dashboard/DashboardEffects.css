@@ -1,16 +1,47 @@
-/* Верстка sidebar */
+.time-width {
+  width: 44px;
+}
 
-/* body {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  letter-spacing: 0.00938em;
-  background-color: #fff;
-} */
+.dash {
+  width: auto;
+}
 
-.dashboard {
-  min-height: 100vh;
+.jss2 {
+  width: 100%;
+  margin: 0 auto;
+  z-index: 1;
+  position: relative;
+  max-width: 1224px;
+}
+
+.jss3 {
   display: flex;
+}
+
+.jss638 {
+  width: 50px;
+}
+
+.working-hours-label {
+  width: 44px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hour {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-style: normal;
+  font-family: "SB Sans Text", Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+@media (max-width: 600px) {
+  .jss2 {
+    max-width: calc(100% - (64px + 61px));
+  }
 }
