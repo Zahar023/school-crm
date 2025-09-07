@@ -18,7 +18,6 @@ export default function Dashboard() {
             <div className="time-width">
               <WorkingHourLabel />
             </div>
-
             <Border />
             <Border />
             <Border />
