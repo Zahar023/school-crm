@@ -8,6 +8,10 @@
   border-bottom: 1px solid #c6cfda;
 }
 
+.border-top{
+  border-top: 1px solid #c6cfda;
+}
+
 .column:last-of-type {
   border-right: 1px solid #c6cfda;
 }

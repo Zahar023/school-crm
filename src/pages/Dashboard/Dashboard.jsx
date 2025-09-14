@@ -2,8 +2,16 @@ import React from "react";
 import WorkingHourLabel from "./WorkingHoursLabel";
 import Border from "./Border/Border";
 import "./DashboardEffects.css";
-
+import Modal from "./Modal/Modal";
+import { useState } from "react";
 export default function Dashboard() {
+
+  const [isModalActive, setIsModalActive] = useState(false);
+
+  const openModal = () => {
+    setIsModalActive(true); // открыть модальное окно
+  }
+
   return (
     <div>
       <div className="calendarHeader">
@@ -18,16 +26,17 @@ export default function Dashboard() {
             <div className="time-width">
               <WorkingHourLabel />
             </div>
-            <Border />
-            <Border />
-            <Border />
-            <Border />
-            <Border />
-            <Border />
-            <Border />
-          </div>
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+          </div>          
         </div>
       </div>
+      <Modal active={isModalActive} setActive={setIsModalActive} />
     </div>
   );
 }
