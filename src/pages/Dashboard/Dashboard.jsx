@@ -7,7 +7,7 @@ import "./DashboardEffects.css";
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  //  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -21,8 +21,8 @@ export default function Dashboard() {
     }*/
   }, []);
 
-  if (loading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
+  //  if (loading) return <div>Загрузка...</div>;
+  //  if (error) return <div>Ошибка: {error}</div>;
 
   return (
     // <body style>
