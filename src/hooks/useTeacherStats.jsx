@@ -16,7 +16,7 @@ export const useTeacherStats = (teacherId) => {
           return;
         }
         const response = await axios.get(
-          `https://backend-school-crm-ioyv.onrender.com/api/users/${teacherId}/stats`
+          `https://school-crm-backend-2q7c.onrender.com/api/users/${teacherId}/stats`
         );
         console.log("Статистика: ", response.data.data);
         setStats(response.data.data);

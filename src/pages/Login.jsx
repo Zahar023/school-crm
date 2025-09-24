@@ -17,39 +17,39 @@ export default function Login() {
     console.log("Введенные данные:", formData);
     navigate("/dashboard");
 
-    /*try {
-        const response = await axios.post(
-          "https://backend-school-crm-ioyv.onrender.com/api/auth/login",
-          formData
-        );
+    try {
+      const response = await axios.post(
+        "https://school-crm-backend-2q7c.onrender.com/api/auth/login",
+        formData
+      );
 
-        if (response.data.success) {
-          const { token, user } = response.data.data;
+      if (response.data.success) {
+        const { token, user } = response.data.data;
 
-          login(token, user);
+        login(token, user);
 
-          if (response.data.data.isAdmin) {
-            navigate("/register");
-          } else {
-            navigate("/dashboard");
-          }
-        }
-      } catch (error) {
-        console.error("Login error:", error);
-
-        if (error.response?.data?.errorCode === "ACCOUNT_DISABLED") {
-          setError("Ваш аккаунт заблокирован. Обратитесь к администратору.");
-        } else if (error.response?.status === 403) {
-          setError("Аккаунт заблокирован. Обратитесь к администратору.");
-        } else if (error.response?.status === 401) {
-          setError("Неверный email или пароль");
-        } else if (error.code === "NETWORK_ERROR") {
-          setError("Нет соединения с сервером");
+        if (response.data.data.isAdmin) {
+          navigate("/register");
         } else {
-          setError("Ошибка при входе. Попробуйте позже.");
+          navigate("/dashboard");
         }
-        setFormData({ password: "" });
-      }*/
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+
+      if (error.response?.data?.errorCode === "ACCOUNT_DISABLED") {
+        setError("Ваш аккаунт заблокирован. Обратитесь к администратору.");
+      } else if (error.response?.status === 403) {
+        setError("Аккаунт заблокирован. Обратитесь к администратору.");
+      } else if (error.response?.status === 401) {
+        setError("Неверный email или пароль");
+      } else if (error.code === "NETWORK_ERROR") {
+        setError("Нет соединения с сервером");
+      } else {
+        setError("Ошибка при входе. Попробуйте позже.");
+      }
+      setFormData({ password: "" });
+    }
   };
 
   const handleInputChange = (e) => {
@@ -84,7 +84,6 @@ export default function Login() {
             <input
               placeholder="Логин"
               name="email"
-              type="email"
               value={formData.email}
               onChange={handleInputChange}
               required

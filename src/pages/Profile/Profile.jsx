@@ -22,6 +22,7 @@ export default function Profile() {
       <h1>Профиль</h1>
       <div>
         <h2>Статистика</h2>
+        <p>Имя: {stats.name}</p>
         <p>Отработано часов: {stats.hours}</p>
         <p>Активных слотов: {stats.slots}</p>
       </div>
