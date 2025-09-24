@@ -1,41 +1,41 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import { ways } from "./data";
-import TimeButton from "./TimeButton";
+import React from "react";
+import WorkingHourLabel from "./WorkingHoursLabel";
+import Border from "./Border/Border";
 import "./DashboardEffects.css";
-
+import Modal from "./Modal/Modal";
+import { useState } from "react";
 export default function Dashboard() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isModalActive, setIsModalActive] = useState(false);
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/");
-      return;
-    }
-    setLoading(false);
-  }, []);
-
-  if (loading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
+  const openModal = () => {
+    setIsModalActive(true); // открыть модальное окно
+  };
 
   return (
-    // <body style>
-    <div className="dashboard">
-      <div className="timeDescriptionButtons">
-        <h3> Запись</h3>
-
-        {ways.map((way) => (
-          <TimeButton key={way.id} {...way} />
-        ))}
+    <div>
+      <div className="calendarHeader">
+        <div className="singleNumber">
+          1 Sep
+          <span>Mon</span>
+        </div>
       </div>
+      <div className="Dash">
+        <div className="jss2">
+          <div className="jss3">
+            <div className="time-width">
+              <WorkingHourLabel />
+            </div>
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+            <Border onClick={openModal} />
+          </div>
+        </div>
+      </div>
+      <Modal active={isModalActive} setActive={setIsModalActive} />
     </div>
-    // </body>
   );
 }
