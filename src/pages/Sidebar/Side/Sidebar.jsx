@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../../contexts/UserContext";
 import "./Sidebar.css";
 
 export default function Sidebar() {
@@ -7,7 +7,7 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleExit = () => {
+  const handleLogout = () => {
     logout();
     navigate("/");
   };
@@ -15,14 +15,14 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarHeader">
-        <div className="sidebarHeaderLogo"></div>
+        <div className="sidebarHeaderLogo">CRM-school-logo</div>
         <div className="toggleButton"></div>
       </div>
       <div className="sidebarBody">
         <div className="personalCabinet">
           <h2>Навигация</h2>
         </div>
-        <div className="sidebar-nav">
+        <nav className="sidebar-nav">
           <button
             onClick={() => navigate("/profile")}
             className={location.pathname === "/profile" ? "active" : ""}
@@ -35,10 +35,8 @@ export default function Sidebar() {
           >
             Календарь
           </button>
-        </div>
-        <div>
-          <button onClick={handleExit}> Выход </button>
-        </div>
+          <button onClick={handleLogout}>Выход</button>
+        </nav>
       </div>
     </div>
   );

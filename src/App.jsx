@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Register from "./pages/Admin/Register";
 import Users from "./pages/Admin/ActiveUsers";
-import Layout from "./components/Layout";
+import Layout from "./pages/Sidebar/Layout/Layout";
 import Profile from "./pages/Profile/Profile";
 
 export default function App() {
