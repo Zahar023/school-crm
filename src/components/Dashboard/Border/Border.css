@@ -1,0 +1,56 @@
+.column {
+  flex: 1 1 auto;
+  border-left: 1px solid #e0e0e0;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.column:last-of-type {
+  border-right: 1px solid #e0e0e0;
+}
+
+.time-slot {
+  height: 60px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.time-slot.first-slot {
+  border-top: 1px solid #e0e0e0;
+}
+
+.time-slot:hover {
+  background: rgba(163, 177, 138, 0.1);
+}
+
+.slot-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(88, 129, 87, 0.15) 0%,
+    rgba(163, 177, 138, 0.15) 100%
+  );
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.time-slot:hover .slot-hover-overlay {
+  opacity: 1;
+}
+
+.time-slot:active {
+  background: rgba(88, 129, 87, 0.2);
+}
+
+@media (max-width: 768px) {
+  .time-slot {
+    height: 60px;
+  }
+}

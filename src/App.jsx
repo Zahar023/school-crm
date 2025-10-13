@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Login from "./components/Login/Login";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Register from "./pages/Admin/Register";
 import Users from "./pages/Admin/ActiveUsers";
-import Layout from "./pages/Sidebar/Layout/Layout";
-import Profile from "./pages/Profile/Profile";
+import Layout from "./components/Sidebar/Layout/Layout";
+import Profile from "./components/Sidebar/Profile/Profile";
 
 export default function App() {
   return (

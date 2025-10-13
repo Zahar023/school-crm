@@ -1,5 +1,3 @@
-/* Верстка страницы логина и пароля */
-
 .login-page {
   display: flex;
   flex-direction: column;
